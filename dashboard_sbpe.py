@@ -318,11 +318,15 @@ fig.add_trace(go.Scatter(
     x=input_data["Heure"],
     y=input_data["Charge_horaire"],
     mode="lines+markers",
-    name="Charge"
+    name="Charge",
+    line=dict(color="red", width=4),      # 🔴 Courbe rouge
+    marker=dict(color="red", size=6)      # 🔴 Points rouges
 ))
 
-fig.update_layout(barmode="stack", template="plotly_white")
-
+fig.update_layout(
+    barmode="stack",
+    template="plotly_white"
+)
 
 st.plotly_chart(fig, use_container_width=True)
 
