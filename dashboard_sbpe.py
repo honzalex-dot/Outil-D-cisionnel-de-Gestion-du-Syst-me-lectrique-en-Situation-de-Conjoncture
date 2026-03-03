@@ -69,8 +69,8 @@ Charge_VRA = float(row["Charge_VRA"])
 Charge_TCN = float(row["Charge_TCN"])
 Charge_Totale = Charge_VRA + Charge_TCN
 
-Prod_MG1_VRA_base = float(row["MG1 VRA"])
-Prod_MG1_TCN_base = float(row["MG1 TCN"])
+Prod_MG1_VRA = float(row["MG1 VRA"])
+Prod_MG1_TCN = float(row["MG1 TCN"])
 
 RES_VRA = float(row["Reserve_MG1 VRA"])
 RES_TCN = float(row["Reserve_MG1 TCN"])
@@ -325,3 +325,4 @@ fig.update_layout(barmode="stack", template="plotly_white")
 
 
 st.plotly_chart(fig, use_container_width=True)
+
