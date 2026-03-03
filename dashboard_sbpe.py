@@ -123,8 +123,8 @@ for _, scen in Alerte_Réseau.iterrows():
 
 import_effectif = min(PARAS + TRANSCORP, 225)
 
-offre_nat_tcn = SOLAIRE + import_effectif + Prod_MG1_TCN_base
-offre_nat_vra = VRA_import + Prod_MG1_VRA_base
+offre_nat_tcn = SOLAIRE + import_effectif + Prod_MG1_TCN
+offre_nat_vra = VRA_import + Prod_MG1_VRA
 
 gap_tcn = Charge_TCN - offre_nat_tcn
 gap_vra = Charge_VRA - offre_nat_vra
@@ -136,16 +136,16 @@ delestage_vra = 0
 delestage_tcn = 0
 
 if gap_tcn > 0:
-    delta = min(RES_TCN, MG1_TCN_max - Prod_MG1_TCN_base, gap_tcn)
+    delta = min(RES_TCN, MG1_TCN_max - Prod_MG1_TCN, gap_tcn)
     mg1_tcn += delta
     gap_tcn -= delta
 
 if gap_vra > 0:
-    delta = min(RES_VRA, MG1_VRA_max - Prod_MG1_VRA_base, gap_vra)
+    delta = min(RES_VRA, MG1_VRA_max - Prod_MG1_VRA, gap_vra)
     mg1_vra += delta
     gap_vra -= delta
 
-reserve_restante_tcn = min(RES_TCN, MG1_TCN_max - Prod_MG1_TCN_base) - mg1_tcn
+reserve_restante_tcn = min(RES_TCN, MG1_TCN_max - Prod_MG1_TCN) - mg1_tcn
 
 if Alerte_Réseau_Actives and gap_vra > 0 and reserve_restante_tcn > 0:
     transfert = min(gap_vra, reserve_restante_tcn)
@@ -286,7 +286,7 @@ with col_vra:
     st.markdown("### ÎLOT VRA")
     st.write("Charge :", round(Charge_VRA,1), "MW")
     st.write("Import VRA :", round(VRA_import,1), "MW")
-    st.write("Production MG1 Base :", round(Prod_MG1_VRA_base,1), "MW")
+    st.write("Production MG1 :", round(Prod_MG1_VRA_base,1), "MW")
     st.write("Réserve :", round(RES_VRA,1), "MW")
     st.write("Délestage :", round(delestage_vra,1), "MW")
 
@@ -295,7 +295,7 @@ with col_tcn:
     st.write("Charge :", round(Charge_TCN,1), "MW")
     st.write("Import PARAS :", round(PARAS,1), "MW")
     st.write("Import TRANSCORP :", round(TRANSCORP,1), "MW")
-    st.write("Production MG1 Base :", round(Prod_MG1_TCN_base,1), "MW")
+    st.write("Production MG1 :", round(Prod_MG1_TCN_base,1), "MW")
     st.write("Production solaire :", round(SOLAIRE,1), "MW")
     st.write("Réserve :", round(RES_TCN,1), "MW")
     st.write("Délestage :", round(delestage_tcn,1), "MW")
@@ -322,5 +322,6 @@ fig.add_trace(go.Scatter(
 ))
 
 fig.update_layout(barmode="stack", template="plotly_white")
+
 
 st.plotly_chart(fig, use_container_width=True)
