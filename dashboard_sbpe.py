@@ -286,7 +286,7 @@ with col_vra:
     st.markdown("### ÎLOT VRA")
     st.write("Charge :", round(Charge_VRA,1), "MW")
     st.write("Import VRA :", round(VRA_import,1), "MW")
-    st.write("Production MG1 :", round(Prod_MG1_VRA_base,1), "MW")
+    st.write("Production MG1 :", round(Prod_MG1_VRA,1), "MW")
     st.write("Réserve :", round(RES_VRA,1), "MW")
     st.write("Délestage :", round(delestage_vra,1), "MW")
 
@@ -295,7 +295,7 @@ with col_tcn:
     st.write("Charge :", round(Charge_TCN,1), "MW")
     st.write("Import PARAS :", round(PARAS,1), "MW")
     st.write("Import TRANSCORP :", round(TRANSCORP,1), "MW")
-    st.write("Production MG1 :", round(Prod_MG1_TCN_base,1), "MW")
+    st.write("Production MG1 :", round(Prod_MG1_TCN,1), "MW")
     st.write("Production solaire :", round(SOLAIRE,1), "MW")
     st.write("Réserve :", round(RES_TCN,1), "MW")
     st.write("Délestage :", round(delestage_tcn,1), "MW")
@@ -325,4 +325,5 @@ fig.update_layout(barmode="stack", template="plotly_white")
 
 
 st.plotly_chart(fig, use_container_width=True)
+
 
